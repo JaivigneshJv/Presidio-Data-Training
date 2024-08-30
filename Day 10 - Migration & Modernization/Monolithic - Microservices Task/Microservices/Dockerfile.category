@@ -1,0 +1,23 @@
+# Use the official Node.js image as the base image
+FROM node:latest
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and yarn.lock to the working directory
+COPY backend/category-service/package*.json ./
+
+# Install dependencies
+RUN yarn install
+
+# Copy the rest of the application code to the working directory
+COPY backend/category-service/ .
+
+# Expose the port the backend will run on
+EXPOSE 5001
+
+# Define the environment variable for production (optional)
+ENV NODE_ENV=production
+
+# Command to run the category service
+CMD ["npm", "start"]

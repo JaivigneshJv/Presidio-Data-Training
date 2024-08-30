@@ -1,7 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
-const expenseRoutes = require("./routes/expenseRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const {errorHandler} = require("./middleware/errorMiddleware");
 const cors = require("cors");
@@ -14,11 +13,10 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/api/expenses", expenseRoutes);
 app.use("/api/categories", categoryRoutes);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Category service running on port ${PORT}`));
